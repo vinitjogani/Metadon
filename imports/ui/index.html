@@ -1,0 +1,108 @@
+<body>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</body>
+
+<template name="home">
+    {{#if currentUser}}
+        {{> games}}
+    {{else}}
+        {{> login}}
+    {{/if}}
+</template>
+
+<template name="login">
+
+    <img src="assets/logo.png" id="logo" /><br /><br />
+    <div class="center">{{> loginButtons}}</div>
+
+</template>
+
+<template name="games">
+    <div class="centerBox">
+        <img src="assets/logo.png" /><br /><br />
+        <button class="materialButton" id="newGame">New Game</button>
+        <input type="text" class="materialInput" id="roomId" placeholder="Game ID" />
+        <button class="materialButton narrow" id="share"><i class="material-icons">&#xe163;</i></button>
+        <button class="materialButton" id="joinGame">Join Game</button><br /><br />
+        {{> loginButtons}}
+    </div>
+    <div class="messageBox">
+        <ul>
+            {{#each messages}}
+                <li><b>{{this.from}}:</b> {{this.game}}</li>
+            {{/each}}
+        </ul>
+    </div>
+</template>
+
+<template name="game">
+    {{#if over}}
+        {{> gameOver winners}}
+    {{else}}
+    <div class="header">
+        <div class="players center">
+            <b>Players:</b> |
+            {{#each players}}
+                {{#if turn this}}
+                    <span class="turn">{{> player}} </span> | 
+                {{else}}
+                    <span class="nturn">{{> player}} </span> | 
+                {{/if}}
+            {{/each}}
+
+           <br />
+            {{#if winners}}
+            
+                <b>Winners:</b> |
+                {{#each winners}}
+                    {{> player}} 
+                {{/each}}
+
+            {{/if}}
+        </div>
+        <div class="deck">
+            {{#if prev}}
+
+                <span class="S" style="font-family: 'Zilla Slab', serif">Last turn: </span>
+                {{#each prev}}
+                    <span class="{{suit this}}">{{cardCode this}}</span>
+                {{/each}}
+            {{/if}}
+            <br /><br /><br />
+            {{#each deck}}
+            <img src="/assets/cards/{{cardImage}}" class="deckCard" />
+            {{/each}}
+
+            {{#each ndeck}}
+            <img class="deckCard" src="/assets/cards/back.png" />
+            {{/each}}
+        </div>
+    </div>
+    <div class="myCards">
+        {{#each cards}}
+            {{> card}}
+        {{/each}}
+    </div>
+    {{/if}}
+</template>
+
+<template name="card">
+    <img class="playCard" style="opacity:{{opacity}}" src="/assets/cards/{{cardImage}}" />
+</template>
+
+<template name="player">
+    {{myName}}
+</template>
+
+<template name="gameOver">
+    <div id="gameOver">
+        <h1>Game Over</h1>
+        <ol>
+            {{#each this}}
+                <li>{{> player}}</li>
+            {{/each}}
+        </ol>
+        <br /><br /><br />
+        <a href="/" style="color:white">Back to main menu</a>
+    </div>
+</template>

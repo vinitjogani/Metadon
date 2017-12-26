@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\.meteor",
+    "\\client",
+    "\\imports",
+    "\\imports\\api",
+    "\\imports\\config",
+    "\\imports\\ui",
+    "\\public",
+    "\\public\\assets",
+    "\\server"
+  ],
+  "SelectedNode": "\\imports\\api\\Games.js",
+  "PreviewInSolutionExplorer": false
+}
