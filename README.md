@@ -1,4 +1,4 @@
-# Metadon
+# Metadon ([open](http;//metadon.herokuapp.com))
 
 
 Metadon is a simple card game but the rules can be a bit challenging to understand for newcomers. It is a multiplayer game (usually fun with 2-5 people) that refreshes in real-time (using Meteor API) as you play cards. The basic user-flow goes as follows:
